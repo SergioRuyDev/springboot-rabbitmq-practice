@@ -55,7 +55,7 @@ public class RabbitMQConfig {
     @Bean
     public Binding jsonBinding() {
         return BindingBuilder
-                .bind(queue())
+                .bind(jsonQueue())
                 .to(exchange())
                 .with(routingJsonKey);
     }
@@ -65,8 +65,7 @@ public class RabbitMQConfig {
         return new Jackson2JsonMessageConverter();
     }
 
-    @Bean
-    AmqpTemplate amqpTemplate(ConnectionFactory connectionFactory) {
+    public AmqpTemplate amqpTemplate(ConnectionFactory connectionFactory) {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(converter());
         return rabbitTemplate;

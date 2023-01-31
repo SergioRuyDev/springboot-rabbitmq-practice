@@ -20,7 +20,7 @@ public class MessageController {
 //    http://localhost:8080/api/v1/publish?message=hello
     @GetMapping("/publish")
     public ResponseEntity<String> sendMessage(@RequestParam("message") String message) {
-        producer.sendMessages(message);
+        producer.sendMessage(message);
         return ResponseEntity.ok("Message Sent to RabbitMQ ...");
     }
 }
